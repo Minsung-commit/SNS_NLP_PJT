@@ -1,0 +1,271 @@
+{% load static %}
+{% load dict_filter %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>OJO - SNS기반의 감성숙소 추천</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/ojo_favi.ico' %}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href='{% static "css/stay_styles.css" %}' rel="stylesheet" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Batang&family=Gowun+Dodum&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5" style="font-family: 'Gowun Dodum', serif;">
+                <a class="font-GB" href="{% url 'homepage:choice' %}" style="text-decoration: none;">OJO 감성숙소</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/theme">테마 선택하기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/popular">인기 숙소 둘러보기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/totalstay">전체 숙소 둘러보기</a></li>
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-dark" href="http://ncov.mohw.go.kr/socdisBoardView.do?brdId=6&brdGubun=1">
+                        <!-- <button class="btn btn-outline-dark" type="submit">-->
+                            <i class="bi-fill me-1"></i>
+                            코로나 안전정보
+                            <!-- <a class="btn btn-primary" href="http://ncov.mohw.go.kr/">코로나19 공식 사이트 바로가기</a> -->
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-white border-bottom mb-4"  background=  'img/11.png'>
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="font-GB" style="font-size: 40px ;">인기숙소</h1>
+                    <p class="font-GD"> 인기숙소 리스트</p>
+                </div>
+            </div>
+        </header>
+        <!-- Page content-->
+        <div class="container">
+            <div class="row">
+                <div class="card-header" style="text-decoration: underline;">가장 많은 좋아요 정렬</div>
+                    
+                </div>
+                
+                
+                <!-- Nested row for non-featured blog posts-->
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop0.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like0 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like0 | get_dict:'like' }}명이 좋아요를 눌렀습니다! <br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like0.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop1.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like1 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like1 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like1.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop2.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like2 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like2 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like2.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop3.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like3 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like3 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like3.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop4.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like4 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like4 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like4.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop5.jpg' %}" alt="..." style="width: 306px; height: 306px;
+                            " /></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like5 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like5 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like5.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop6.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like6 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like6 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like6.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop7.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like7 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like7 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like7.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop8.jpg' %}" alt="..."style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like8 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like8 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like8.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop9.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like9 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like9 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like9.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop10.jpg' %}" alt="..." style="width: 306px; height: 306px;
+                            "/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like10 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like10 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like10.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop11.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like11 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like11 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like11.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop12.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like12 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like12 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like12.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop13.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like13 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like13 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like13.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop14.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like14 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like14 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like14.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="#!"><img class="card-img-top" src="{% static 'img/pop15.jpg' %}" alt="..." style="height: 306px; width: 306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <h2 class="card-title h4">{{ like15 | get_dict:'name' }}</h2>
+                                <p class="card-text">{{ like15 | get_dict:'like' }}명이 좋아요를 눌렀습니다!<br/></p>
+                                <a class="btn btn-primary" href="{% url 'homepage:staydetail' like15.name %}">숙소상세</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <!-- Pagination-->
+                <nav aria-label="Pagination">
+                    <hr class="my-0" />
+                    <ul class="pagination justify-content-center my-4">
+                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                    </ul>
+                </nav>
+                        
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; OJO 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src='{% static "js/stay_scripts.js" %}'></script>
+    </body>
+</html>

@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>OJO - SNS기반의 감성숙소 추천</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/ojo_favi.ico' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        {% load static %}
+        <link href="{% static 'css/theme_styles.css' %}" rel="stylesheet" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Batang&family=Gowun+Dodum&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5" style="font-family: 'Gowun Dodum', serif;">
+                <a class="font-GB" href="{% url 'homepage:choice' %}" style="text-decoration: none;">OJO 감성숙소</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/theme">테마 선택하기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/popular">인기 숙소 둘러보기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/totalstay">전체 숙소 둘러보기</a></li>
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-dark" href="http://ncov.mohw.go.kr/socdisBoardView.do?brdId=6&brdGubun=1">
+                        <!-- <button class="btn btn-outline-dark" type="submit"> -->
+                            <i class="bi-fill me-1"></i>
+                            코로나 안전정보
+                            <a class="badge bg-dark text-white ms-1 rounded-pill" href="http://ncov.mohw.go.kr/socdisBoardView.do?brdId=6&brdGubun=1">바로가기</a>
+                            <!-- <span class="badge bg-dark text-white ms-1 rounded-pill" a href="http://ncov.mohw.go.kr/"></a>바로가기</span> -->
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        
+   <!-- # 0 = '홀로 떠나는 여행 / 나에게 집중하는 쉼/오롯이 나를 위해 보내는 하루' 2 = '연인과 함께' 3 = '특별한 체험이 있는 숙소(당신의 하루를 특별하게)' 4 = '고즈넉한 공간(완벽한 OFF의 공간/가만히 즐기는 여유/온전한 휴식을 위하여)' 5 = '감각있는 숙소(우리들만의 파티 플레이스)'
+        # 6 = '아름다운 풍경이 가득한 숙소(자연 그대로를 품다) 7 = '놀기 좋은 숙소(자유로운 하루를 보내다/자연에서의 놀이터)' 8 = '편안한 분위기의 숙소(따듯하고 포근한 공간을 그리며)' 9 = '하늘과 바다가 가득한 숙소'(하늘과 바다가 가득 밀려드는) -->
+        
+        <header class="bg-white py-5" style="background-image:url(..img/19.jpeg);">
+            <div class="container px-4 px-lg-5 d-flex h-50 align-items-center justify-content-center"></div>
+            <!-- <div class="container px-4 px-lg-5 my-5"> -->
+                <div class="text-center text-black">
+                    <h1 class="font-GB" style="font-size: 40px;">숙소 테마 선택하기</h1>
+                    <p class="font-GD" style="font-size: 30ps;"><br/>원하는 테마를 선택해주세요</p>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                    <div class="col mb-5">
+                        <div class="card h-300">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/10.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder" style="
+                                    font-family: 'Gowun Batang';
+                                ">{{zero}}</h5>
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:stay' zero %}">둘러보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-300">
+                            <!-- Sale badge-->
+                            <!-- <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> -->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/17.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder" style="
+                                    font-family: 'Gowun Batang';
+                                ">{{two}}</h5>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:stay' two %}">둘러보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <!-- <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> -->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/7.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder" style="
+                                    font-family: 'Gowun Batang';
+                                ">{{three}}</h5>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:stay' three %}">둘러보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/14.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder" style="
+                                    font-family: 'Gowun Batang';
+                                ">{{four}}</h5>
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:stay' four %}">둘러보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <!-- <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> -->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/17.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder" style="
+                                    font-family: 'Gowun Batang';
+                                ">{{five}}</h5>
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:stay' five %}">둘러보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/2.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder" style="
+                                    font-family: 'Gowun Batang';
+                                ">{{six}}</h5>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:stay' six %}">둘러보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <!-- <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> -->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/11.png' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder" style="
+                                    font-family: 'Gowun Batang';
+                                ">{{seven}}</h5>
+                                    <!-- Product reviews-->
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:stay' seven %}">둘러보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/15.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder"style="
+                                    font-family: 'Gowun Batang';
+                                ">{{eight}}</h5>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:stay' eight %}">둘러보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <!-- <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> -->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/15.jpg' %}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder"style="
+                                    font-family: 'Gowun Batang';
+                                ">{{nine}}</h5>
+                                    <!-- Product reviews-->
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:stay' nine %}">둘러보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; OJO 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src='{% static "js/theme_scripts.js" %}'></script>
+    </body>
+</html>

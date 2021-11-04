@@ -1,0 +1,334 @@
+{% load static %}
+{% load dict_filter %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>OJO - SNS기반의 감성숙소 추천</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/ojo_favi.ico' %}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href='{% static "css/stay_styles.css" %}' rel="stylesheet" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Batang&family=Gowun+Dodum&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5" style="font-family: 'Gowun Dodum', serif;">
+                <a class="font-GB" href="{% url 'homepage:choice' %}" style="text-decoration: none;">OJO 감성숙소</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/theme">테마 선택하기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/popular">인기 숙소 둘러보기</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/homepage/totalstay">전체 숙소 둘러보기</a></li>
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-dark" href="http://ncov.mohw.go.kr/socdisBoardView.do?brdId=6&brdGubun=1">
+                        <!-- <button class="btn btn-outline-dark" type="submit">-->
+                            <i class="bi-fill me-1"></i>
+                            코로나 안전정보
+                            <!-- <a class="btn btn-primary" href="http://ncov.mohw.go.kr/">코로나19 공식 사이트 바로가기</a> -->
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Page header with logo and tagline-->
+        <header class="py-5 bg-white border-bottom mb-4"  style='background-image:url(../img/1.jpg)'>
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="font-GB" style="font-size: 40px;">전체숙소</h1>
+                    <p class="font-GD" style="font-size: 30ps;"> 감성숙소 리스트</p>
+                </div>
+            </div>
+        </header>
+        <!-- Page content-->
+        <div class="container">
+            <div class="row">
+
+                <!-- <div class="card-header"> 태그를 이용해서 검색하세요 </div> -->
+                    <div class="card-body" style="padding: 50px;">
+                        <div class="input-group">
+                            <form method="POST" action="{% url 'homepage:totalstay' %}" class="nav-link dropdown-toggle" style="margin-left: 7%; margin-top: 5%;">
+                                {% csrf_token %}
+                                <select name="local" id="id_local">
+                                    <option value="0" selected>지역 선택</option>
+                                    <option value="서울">서울</option>
+                                    <option value="부산">부산</option>
+                                    <option value="제주">제주</option>
+                                    <option value="강원">강원</option>
+                                    <option value="인천">인천</option>
+                                    <option value="경기">경기</option>
+                                    <option value="대구">대구</option>
+                                    <option value="광주">광주</option>
+                                    <option value="대전">대전</option>
+                                    <option value="울산">울산</option>
+                                    <option value="세종">세종</option>
+                                    <option value="경남">경남</option>
+                                    <option value="경북">경북</option>
+                                    <option value="전남">전남</option>
+                                    <option value="전북">전북</option>
+                                    <option value="충북">충북</option>
+                                    <option value="충남">충남</option>
+                                </select>
+                            
+              
+                                <input class="form-control" name="tag" type="text" placeholder="태그를 이용해서 검색하세요..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search"  type="submit">SEARCH</button>
+                                # 바다, # 한옥, # 힐링, # 수영장,# 마을, # 오션뷰, # 바베큐, # 풍경, # 독채, # 스파, # 자쿠지, # 돌담
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- Nested row for non-featured blog posts-->
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+
+                        <div class="card mb-4">
+                            {% if random0 %}
+                            <a href="{% url 'homepage:staydetail' random0.name %}"><img class="card-img-top" src="{% static 'img/all0.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random0.name %}"><h2 class="card-title h4">{{ random0 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random0 | get_dict:'tags' }} <br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random0.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Blog post-->   
+                        <div class="card mb-4">
+                            {% if random1 %}
+                            <a href="{% url 'homepage:staydetail' random1.name %}"><img class="card-img-top" src="{% static 'img/all1.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random1.name %}"><h2 class="card-title h4">{{ random1 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random1 | get_dict:'tags'}} <br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random1.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random2 %}
+                            <a href="{% url 'homepage:staydetail' random2.name %}"><img class="card-img-top" src="{% static 'img/all2.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random2.name %}"><h2 class="card-title h4">{{ random2 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random2 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random2.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random3 %}
+                            <a href="{% url 'homepage:staydetail' random3.name %}"><img class="card-img-top" src="{% static 'img/all3.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random3.name %}"><h2 class="card-title h4">{{ random3 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random3 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random3.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random4 %}
+                            <a href="{% url 'homepage:staydetail' random4.name %}"><img class="card-img-top" src="{% static 'img/all4.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random4.name %}"><h2 class="card-title h4">{{ random4 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random4 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random4.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random5 %}
+                            <a href="{% url 'homepage:staydetail' random5.name %}"><img class="card-img-top" src="{% static 'img/all5.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random5.name %}"><h2 class="card-title h4">{{ random5 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random5 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random5.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random6 %}
+                            <a href="{% url 'homepage:staydetail' random6.name %}"><img class="card-img-top" src="{% static 'img/all6.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random6.name %}"><h2 class="card-title h4">{{ random6 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random6 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random6.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random7 %}
+                            <a href="{% url 'homepage:staydetail' random7.name %}"><img class="card-img-top" src="{% static 'img/all7.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random7.name %}"><h2 class="card-title h4">{{ random7 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random7 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random7.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random8 %}
+                            <a href="{% url 'homepage:staydetail' random8.name %}"><img class="card-img-top" src="{% static 'img/all8.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random8.name %}"><h2 class="card-title h4">{{ random8 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random8 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random8.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random9 %}
+                            <a href="{% url 'homepage:staydetail' random9.name %}"><img class="card-img-top" src="{% static 'img/all9.jpg' %}" alt="..."  style="width:306px; height:306px;"/></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random9.name %}"><h2 class="card-title h4">{{ random9 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random9 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random9.name %}">숙소상세</a>
+-->                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random10 %}
+                            <a href="{% url 'homepage:staydetail' random10.name %}"><img class="card-img-top" src="{% static 'img/all10.jpg' %}" alt="..." style="width:306px; height:306px;" /></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random10.name %}"><h2 class="card-title h4">{{ random10 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random10 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random10.name %}">숙소상세</a>-->
+                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random11 %}
+                            <a href="{% url 'homepage:staydetail' random11.name %}"><img class="card-img-top" src="{% static 'img/all11.jpg' %}" alt="..." style="width:306px; height:306px;" /></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random11.name %}"><h2 class="card-title h4">{{ random11 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random11 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random11.name %}">숙소상세</a>-->
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random12 %}
+                            <a href="{% url 'homepage:staydetail' random12.name %}"><img class="card-img-top" src="{% static 'img/all12.jpg' %}" alt="..." style="width:306px; height:306px;" /></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random12.name %}"><h2 class="card-title h4">{{ random12 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random12 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random12.name %}">숙소상세</a>-->
+                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random13 %}
+                            <a href="{% url 'homepage:staydetail' random13.name %}"><img class="card-img-top" src="{% static 'img/all13.jpg' %}" alt="..." style="width:306px; height:306px;" /></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random13.name %}"><h2 class="card-title h4">{{ random13 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random13 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random13.name %}">숙소상세</a>-->
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random14 %}
+                            <a href="{% url 'homepage:staydetail' random14.name %}"><img class="card-img-top" src="{% static 'img/all14.jpg' %}" alt="..." style="width:306px; height:306px;" /></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random14.name %}"><h2 class="card-title h4">{{ random14 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random14 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random14.name %}">숙소상세</a>-->
+                            </div>
+                            {% endif %}
+                        </div>
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            {% if random15 %}
+                            <a href="{% url 'homepage:staydetail' random15.name %}"><img class="card-img-top" src="{% static 'img/all15.jpg' %}" alt="..." style="width:306px; height:306px;" /></a>
+                            <div class="card-body">
+                                <!-- <div class="small text-muted">January 1, 2021</div> -->
+                                <a href="{% url 'homepage:staydetail' random15.name %}"><h2 class="card-title h4">{{ random15 | get_dict:'name' }}</h2></a>
+                                <p class="card-text" style="font-size: 10px; height: 110px;">{{ random15 | get_dict:'tags' }}<br/></p>
+                                <!--<a class="btn btn-primary" href="{% url 'homepage:staydetail' random15.name %}">숙소상세</a>-->
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <!-- Pagination-->
+                <nav aria-label="Pagination">
+                    <hr class="my-0" />
+                    <ul class="pagination justify-content-center my-4">
+                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
+                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
+                        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
+                    </ul>
+                </nav>
+                        
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; OJO 2021</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src='{% static "js/stay_scripts.js" %}'></script>
+    </body>
+</html>

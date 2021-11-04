@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>OJO - SNS기반의 감성숙소 추천</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/ojo_favi.ico' %}" />
+
+        <!-- <link rel="icon" type="image/x-icon" href="../static/assets/ojo_favi.ico" /> -->
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        {% load static %}
+        <link href="{% static 'css/choice.css' %}" rel="stylesheet" />
+        
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Batang&family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+    </head>
+    <body id="page-top">
+        <!-- Contact-->
+        <section class="py-5">
+            <div class="container px-9 px-lg-10 ">
+                <div class="col-md-10 col-lg-8 mx-auto text-center">
+                    <!-- <i class="far fa-paper-plane fa-2x mb-2 text-white"></i> -->
+                    <h2 class="font-NM" style="font-size: 40px;">모든 순간이 여행이 되도록</h2><br/><br/><br/>
+                </div>
+                <div class="row gx-8 gx-lg-9 row-cols-2 row-cols-md-4 row-cols-xl-3 justify-content-center">
+
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            <!-- <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> -->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/22.jpg' %}" alt="..." style="
+                            width: 414px;
+                            height: 300px;
+                        "/>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    
+                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:theme' %}"><h5 class = "font-GB" style="font-size: 17px;">테마별 숙소<br/> 보러가기</h5></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-300">
+                            <!-- Sale badge-->
+                            <!-- <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> -->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/24.jpg' %}" alt="..." style="
+                            width: 414px;
+                            height: 300px;
+                        " />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:popular' %}"><h5 class = "font-GB" style="font-size: 17px;">인기숙소<br/> 보러가기</h5></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-300">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{% static 'img/23.png' %}" alt="..." style="
+                            width: 414px;
+                            height: 300px;
+                        "/>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'homepage:totalstay' %}"><h5 class = "font-GB" style="font-size: 17px;">전체숙소<br/> 보러가기</h5></a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; OJO 2021</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        {% load static %}
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
