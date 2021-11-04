@@ -7,7 +7,7 @@ Natural Language Processing Project based on SNS text data
 ### 활용 데이터 
   - 인스타그램 감성숙소 정보공유 게시글 & 네이버 블로그 리뷰 데이터
 ### 활용 기술
-  - 웹 크롤링, Kiwi, Word2Vec, K-means, Content based Filltering, TextRank, HDFS, MongoDB 
+  - 웹 크롤링, Kiwi, Word2Vec, K-means, Content based Filltering, TextRank, HDFS, MongoDB, Airflow, Django 
 ### 분석 방식
   1. 크롤링을 통한 데이터 수집
   2. 1차 전처리(특수문자 제거, 문자열 합치기 등)
